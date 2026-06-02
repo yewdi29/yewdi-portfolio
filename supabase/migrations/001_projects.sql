@@ -1,0 +1,1 @@
+-- 001_projects.sql — Creates the generated_posts table and RLS policies for portfolio projects
