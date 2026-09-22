@@ -25,9 +25,9 @@ export default function ProjectLink({
         const titleNode =
           row.querySelector<HTMLElement>("[data-project-title]") ??
           event.currentTarget;
-        const monthNode = [
-          ...row.querySelectorAll<HTMLElement>("[data-project-month]"),
-        ].find((node) => node.offsetParent !== null);
+        const monthNode = Array.from(
+          row.querySelectorAll<HTMLElement>("[data-project-month]"),
+        ).find((node) => node.offsetParent !== null);
         const tagsNode = row.querySelector<HTMLElement>("[data-project-tags]");
         const rowRect = row.getBoundingClientRect();
         const titleRect = titleNode.getBoundingClientRect();
@@ -52,9 +52,9 @@ export default function ProjectLink({
           monthText: monthNode?.textContent?.trim() ?? "",
           tagsTop: tagsRect?.top ?? 0,
           tagsLeft: tagsRect?.left ?? 0,
-          tags: [...(tagsNode?.querySelectorAll("[data-project-tag]") ?? [])].map(
-            (node) => node.textContent?.trim() ?? ""
-          ),
+          tags: Array.from(
+            tagsNode?.querySelectorAll("[data-project-tag]") ?? [],
+          ).map((node) => node.textContent?.trim() ?? ""),
         });
       }}
     >
