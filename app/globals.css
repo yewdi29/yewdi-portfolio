@@ -50,6 +50,14 @@ a {
     padding-left: clamp(1.5rem, 8vw, 7.5rem);
     padding-right: clamp(1.5rem, 8vw, 7.5rem);
   }
+
+  .mail-link {
+    border-bottom: 1px dotted transparent;
+  }
+
+  .mail-link:hover {
+    border-bottom-color: var(--ink);
+  }
 }
 
 @layer utilities {
@@ -98,7 +106,6 @@ a {
   color: var(--ink);
   overflow: hidden;
   outline: none;
-  box-shadow: 0 -1px 0 var(--rule), 0 1px 0 var(--rule);
 }
 
 .project-overlay[data-phase="idle"] {
@@ -111,12 +118,94 @@ a {
 .project-overlay.is-closing {
   transition:
     top 0.88s cubic-bezier(0.16, 1, 0.3, 1),
-    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.5s ease;
+    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project-overlay.is-open {
-  box-shadow: none;
+.project-overlay.has-flight .project-header-title {
+  visibility: hidden;
+}
+
+[data-project-title].is-flying {
+  visibility: hidden;
+}
+
+[data-project-month],
+[data-project-tags] {
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.is-project-open [data-project-month],
+html.is-project-open [data-project-tags] {
+  opacity: 0;
+  transform: translate3d(0, 4px, 0);
+}
+
+.is-opening-row [data-project-month],
+.is-opening-row [data-project-tags] {
+  visibility: hidden;
+}
+
+.project-flight-meta,
+.project-flight-tags {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  margin: 0;
+}
+
+.project-flight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.project-flight-meta.is-live,
+.project-flight-tags.is-live {
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-flight-meta.is-gone,
+.project-flight-tags.is-gone {
+  opacity: 0;
+  transform: translate3d(0, 4px, 0);
+}
+
+.project-flight-title,
+.project-flight-line {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.project-flight-title {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  line-height: 1.375;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.project-flight-line {
+  height: 1px;
+  background: var(--rule);
+}
+
+.project-flight-line.is-behind {
+  z-index: 49;
+}
+
+.project-flight-title.is-live,
+.project-flight-line.is-live {
+  transition:
+    top 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-overlay.is-scrollable {
@@ -147,7 +236,13 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .project-overlay,
-  .project-overlay-inner {
+  .project-overlay-inner,
+  .project-flight-title,
+  .project-flight-line,
+  .project-flight-meta,
+  .project-flight-tags,
+  [data-project-month],
+  [data-project-tags] {
     transition: none;
   }
 }

@@ -9,24 +9,45 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
     <div className="mx-auto mt-20 max-w-3xl space-y-14 sm:mt-28 sm:space-y-16">
       {blocks.map((block, index) => {
         if (block.type === "text") {
+          const paragraphs = block.body.split(/\n\n+/).filter(Boolean);
+
           return (
-            <p
+            <div
               key={`text-${index}`}
-              className="text-dossier text-ink/90"
+              id={`section-${index}`}
+              className="scroll-mt-24 space-y-6"
             >
-              {block.body}
-            </p>
+              {block.title ? (
+                <p className="meta text-mute">{block.title}</p>
+              ) : null}
+              {paragraphs.map((paragraph, paragraphIndex) => (
+                <p
+                  key={`text-${index}-${paragraphIndex}`}
+                  className="whitespace-pre-line text-dossier text-ink/90"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           );
         }
 
+        const isMotion = /\.gif$/i.test(block.src);
+
         return (
-          <figure key={`image-${index}`}>
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-rule/60 sm:aspect-[4/3]">
+          <figure
+            key={`image-${index}`}
+            id={`section-${index}`}
+            className="scroll-mt-24"
+          >
+            <div className="relative w-full overflow-hidden bg-rule/60">
               <Image
                 src={resolveMedia(block.src)}
                 alt={block.caption || ""}
-                fill
-                className="object-cover"
+                width={1920}
+                height={1280}
+                unoptimized={isMotion}
+                className="h-auto w-full"
                 sizes="(min-width: 768px) 48rem, 100vw"
               />
             </div>

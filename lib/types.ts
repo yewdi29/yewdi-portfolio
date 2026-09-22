@@ -1,6 +1,6 @@
 export type ProjectBlock =
   | { type: "image"; src: string; caption?: string }
-  | { type: "text"; body: string };
+  | { type: "text"; title?: string; body: string };
 
 export type Project = {
   id: string;

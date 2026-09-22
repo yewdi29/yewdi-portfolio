@@ -22,7 +22,7 @@ export default async function WorkPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <ProjectOverlay slug={project.slug}>
+    <ProjectOverlay slug={project.slug} title={project.title}>
       <ProjectArticle project={project} rise={false} />
     </ProjectOverlay>
   );

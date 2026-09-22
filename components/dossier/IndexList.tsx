@@ -55,23 +55,37 @@ function YearGroup({
           >
             <ProjectLink
               slug={project.slug}
+              title={project.title}
               className="grid grid-cols-1 items-baseline gap-x-6 py-3 sm:grid-cols-[4.5rem_1fr_auto] sm:py-4"
             >
-              <span className="meta tabular hidden text-mute sm:inline">
+              <span
+                data-project-month
+                className="meta tabular hidden text-mute sm:inline"
+              >
                 {formatMonth(project.occurred_on)}
               </span>
               <span className="min-w-0">
-                <span className="block text-[1.05rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.15rem]">
+                <span
+                  data-project-title={project.slug}
+                  className="block text-[1.05rem] leading-snug tracking-[-0.02em] text-ink sm:text-[1.15rem]"
+                >
                   {project.title}
                 </span>
-                <span className="meta mt-1 block tabular text-mute sm:hidden">
+                <span
+                  data-project-month
+                  className="meta mt-1 block tabular text-mute sm:hidden"
+                >
                   {formatMonth(project.occurred_on)}
                 </span>
               </span>
-              <span className="mt-2 flex flex-wrap gap-1 sm:mt-0 sm:justify-end">
+              <span
+                data-project-tags
+                className="mt-2 flex flex-wrap gap-1 sm:mt-0 sm:justify-end"
+              >
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
+                    data-project-tag
                     className="rounded-full border border-rule px-1.5 py-px text-[8px] uppercase tracking-meta text-mute"
                   >
                     {tag}
