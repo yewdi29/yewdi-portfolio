@@ -2,12 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --desk: #111111;
+  --sheet: #f4f4f2;
+  --ink: #111111;
+  --mute: #8a8a86;
+  --rule: #e4e4e0;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  background: var(--sheet);
+}
+
 body {
   margin: 0;
+  color: var(--ink);
+  background: var(--sheet);
+  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-feature-settings: "tnum" 1, "kern" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--sheet);
+}
+
+@layer components {
+  .meta {
+    @apply text-meta uppercase text-mute;
+  }
+
+  .hairline {
+    border-color: var(--rule);
+  }
+
+  .sheet-pad {
+    padding-left: clamp(1.5rem, 8vw, 7.5rem);
+    padding-right: clamp(1.5rem, 8vw, 7.5rem);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.rise {
+  opacity: 0;
+  animation: rise 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+
+.project-overlay-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.project-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--sheet);
+  color: var(--ink);
   overflow: hidden;
-  background: #000;
+  outline: none;
+  box-shadow: 0 -1px 0 var(--rule), 0 1px 0 var(--rule);
+}
+
+.project-overlay[data-phase="idle"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-overlay.is-armed,
+.project-overlay.is-open,
+.project-overlay.is-closing {
+  transition:
+    top 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s ease;
+}
+
+.project-overlay.is-open {
+  box-shadow: none;
+}
+
+.project-overlay.is-scrollable {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.project-overlay-inner {
+  min-height: 100%;
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+}
+
+.project-overlay.is-open .project-overlay-inner {
+  opacity: 1;
+  transform: none;
+}
+
+.project-overlay.is-closing .project-overlay-inner {
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.28s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-overlay,
+  .project-overlay-inner {
+    transition: none;
+  }
 }
