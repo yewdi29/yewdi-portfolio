@@ -11,16 +11,16 @@ export default function Header({
 }) {
   if (onClose) {
     return (
-      <header className="sheet-pad sticky top-0 z-10 flex items-baseline justify-between gap-6 bg-sheet pt-6 sm:pt-8">
+      <header className="sheet-pad sticky top-0 z-10 grid grid-cols-1 items-baseline gap-3 bg-transparent pt-6 sm:pt-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2.2fr)] lg:gap-10">
         <button
           type="button"
           onClick={onClose}
-          className="meta cursor-pointer border-0 bg-transparent p-0 text-ink"
+          className="meta cursor-pointer justify-self-start border-0 bg-transparent p-0 text-ink"
         >
           ← Return
         </button>
         {title ? (
-          <h1 className="project-header-title text-[1.05rem] font-normal leading-snug tracking-[-0.02em] text-ink sm:text-[1.15rem]">
+          <h1 className="project-header-title justify-self-start text-left text-[1.05rem] font-normal leading-snug tracking-[-0.02em] text-ink sm:text-[1.15rem]">
             {title}
           </h1>
         ) : null}
@@ -29,7 +29,7 @@ export default function Header({
   }
 
   return (
-    <header className="sheet-pad relative z-10 flex items-baseline justify-between gap-6 pt-6 sm:pt-8">
+    <header className="sheet-pad sticky top-0 z-10 flex items-baseline justify-between gap-6 bg-transparent pt-6 sm:pt-8">
       <Rise as="span" className="inline-block shrink-0 whitespace-nowrap">
         <ScrambleName href="/#index" text={site.name} />
       </Rise>

@@ -118,7 +118,13 @@ a {
 .project-overlay.is-closing {
   transition:
     top 0.88s cubic-bezier(0.16, 1, 0.3, 1),
-    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1);
+    bottom 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.88s cubic-bezier(0.16, 1, 0.3, 1),
+    right 0.88s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-overlay.is-closing {
+  pointer-events: none;
 }
 
 .project-overlay.has-flight .project-header-title {
@@ -229,9 +235,9 @@ html.is-project-open [data-project-tags] {
 
 .project-overlay.is-closing .project-overlay-inner {
   opacity: 0;
-  transform: translate3d(0, 8px, 0);
+  transform: none;
   transition-delay: 0s;
-  transition-duration: 0.28s;
+  transition-duration: 0.5s;
 }
 
 @media (prefers-reduced-motion: reduce) {

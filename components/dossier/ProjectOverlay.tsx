@@ -120,12 +120,20 @@ export default function ProjectOverlay({
 
   useEffect(() => {
     if (!origin || origin.titleWidth <= 0) return;
-    const destTop = window.matchMedia("(min-width: 640px)").matches ? 32 : 24;
-    const destLeft = origin.lineLeft + origin.lineWidth - origin.titleWidth;
-    setTitleDest({
-      top: destTop,
-      left: Math.max(origin.lineLeft + 96, destLeft),
-    });
+
+    const measure = () => {
+      const node = overlayRef.current?.querySelector<HTMLElement>(
+        ".project-header-title",
+      );
+      const destTop = window.matchMedia("(min-width: 640px)").matches ? 32 : 24;
+      setTitleDest({
+        top: destTop,
+        left: node?.getBoundingClientRect().left ?? origin.lineLeft,
+      });
+    };
+
+    const frame = window.requestAnimationFrame(measure);
+    return () => window.cancelAnimationFrame(frame);
   }, [origin]);
 
   useEffect(() => {
@@ -182,12 +190,23 @@ export default function ProjectOverlay({
   const from = origin;
   const expanded = phase === "open";
   const flying = Boolean(origin && origin.titleWidth > 0);
-  const style: CSSProperties = expanded
-    ? { top: 0, bottom: 0 }
-    : {
-        top: from?.top ?? 0,
-        bottom: from?.bottom ?? 0,
+  const style: CSSProperties = (() => {
+    if (expanded) return { top: 0, bottom: 0, left: 0, right: 0 };
+    if (phase === "closing" && from && from.lineWidth > 0 && typeof window !== "undefined") {
+      return {
+        top: from.top,
+        bottom: from.bottom,
+        left: from.lineLeft,
+        right: Math.max(0, window.innerWidth - from.lineLeft - from.lineWidth),
       };
+    }
+    return {
+      top: from?.top ?? 0,
+      bottom: from?.bottom ?? 0,
+      left: 0,
+      right: 0,
+    };
+  })();
 
   const titleStyle: CSSProperties | undefined = flying
     ? expanded && titleDest

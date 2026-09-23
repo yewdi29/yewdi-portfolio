@@ -6,9 +6,10 @@ export function padNumber(n: number): string {
 
 export function formatMonth(iso: string): string {
   const date = new Date(`${iso}T00:00:00`);
-  return date
+  const month = date
     .toLocaleString("en-US", { month: "short" })
     .toUpperCase();
+  return `${month} ${String(date.getFullYear()).slice(-2)}`;
 }
 
 export function formatMonthYear(iso: string): string {

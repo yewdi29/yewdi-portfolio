@@ -6,8 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*+<>@?[]{}|/\\^~";
 const DURATION_MIN = 3000;
 const DURATION_MAX = 4000;
-const INTERVAL_MIN = 14000;
-const INTERVAL_MAX = 16000;
+const INTERVAL = 7000;
 const FLIP_MIN = 90;
 const FLIP_MAX = 200;
 
@@ -27,7 +26,6 @@ export default function ScrambleName({
   text: string;
 }) {
   const [display, setDisplay] = useState(text);
-  const link = useRef<HTMLAnchorElement>(null);
   const frame = useRef(0);
   const timer = useRef(0);
 
@@ -95,7 +93,7 @@ export default function ScrambleName({
 
   const schedule = useCallback(() => {
     window.clearTimeout(timer.current);
-    const wait = INTERVAL_MIN + Math.random() * (INTERVAL_MAX - INTERVAL_MIN);
+    const wait = INTERVAL;
     timer.current = window.setTimeout(() => {
       play();
       schedule();
@@ -110,25 +108,8 @@ export default function ScrambleName({
     };
   }, [schedule]);
 
-  useEffect(() => {
-    const node = link.current;
-    if (!node) return;
-
-    const onEnter = () => {
-      play();
-      schedule();
-    };
-
-    node.addEventListener("pointerenter", onEnter);
-    node.addEventListener("focus", onEnter);
-    return () => {
-      node.removeEventListener("pointerenter", onEnter);
-      node.removeEventListener("focus", onEnter);
-    };
-  }, [play, schedule]);
-
   return (
-    <Link ref={link} href={href} className="meta shrink-0 whitespace-nowrap text-ink">
+    <Link href={href} className="meta shrink-0 whitespace-nowrap text-ink">
       <span className="relative inline-block whitespace-nowrap">
         <span className="sr-only">{text}</span>
         <span aria-hidden="true" className="whitespace-nowrap">

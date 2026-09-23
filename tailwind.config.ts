@@ -24,7 +24,7 @@ const config: Config = {
       fontSize: {
         meta: ["11px", { lineHeight: "1.4", letterSpacing: "0.14em" }],
         display: ["clamp(2.75rem, 7vw, 6.25rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],
-        dossier: ["clamp(1.45rem, 2.8vw, 2.55rem)", { lineHeight: "1.25", letterSpacing: "-0.02em" }],
+        dossier: ["clamp(1.2rem, 2.15vw, 1.9rem)", { lineHeight: "1.35", letterSpacing: "-0.02em" }],
       },
       borderRadius: {
         sheet: "1.75rem",
