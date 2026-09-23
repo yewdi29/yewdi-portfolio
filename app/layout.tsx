@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Inter, Schibsted_Grotesk } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
 const grotesk = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${grotesk.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${grotesk.variable} ${inter.variable} font-sans antialiased`}>{children}</body>
     </html>
   );
 }

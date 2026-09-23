@@ -1,6 +1,8 @@
 export type ProjectBlock =
   | { type: "image"; src: string; caption?: string }
-  | { type: "text"; title?: string; body: string };
+  | { type: "text"; title?: string; body: string }
+  | { type: "placeholder"; label: string; caption?: string }
+  | { type: "component"; name: string; caption?: string };
 
 export type Project = {
   id: string;

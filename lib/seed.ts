@@ -284,7 +284,7 @@ export const seedProjects: Project[] = [
     client: "Black Diamond Marketplace",
     role: "Solo — brand, UX, UI, product, and engineering",
     summary:
-      "I took a family oilfield brand and turned it into a working marketplace: identity, user flows, memberships, and an AI listing engine in one shipped product.",
+      "Converting a local shop, to a global marketplace.",
     tags: ["product", "brand", "full-stack", "agentic"],
     accent: "#F15A24",
     specs: {
@@ -293,83 +293,61 @@ export const seedProjects: Project[] = [
       Domain: "blackdiamondmkt.com",
       Stack: "Next.js · Auth · Supabase · Stripe · Anthropic API · Cursor",
     },
-    cover_path: "/work/black-diamond-marketplace-01.png",
+    cover_path: "/work/home-startup-bdm.gif",
     blocks: [
-      {
-        type: "image",
-        src: "/work/black-diamond-marketplace-01.png",
-        caption:
-          "Homepage — quiet field, one statement, two paths: Browse / List. Featured listings sit immediately below so the product proves it is real.",
-      },
       {
         type: "text",
         title: "The problem",
-        body: "Heavy equipment still moves the way it did twenty years ago.\n\nBuyers hunt through Facebook groups, auction sites, and word-of-mouth. Sellers write incomplete listings. Specs get lost. Brokers sit in the middle. Nobody can tell who is real.\n\nThe industry already had inventory. It did not have a product built in its own language.\n\nDesign problem: make a marketplace that feels like it was built by people who have stood in a yard in Odessa — not a generic classifieds template with an oil-rig stock photo.\n\nProduct problem: get a seller from “I have iron sitting” to a live, searchable listing in minutes, then get a serious buyer to the seller without a middleman.",
+        body: "Heavy equipment still moves the way it did twenty years ago.\nBuyers are restricted to brochure style websites that are outdated and bounded by listing managers as well as auction houses cornering you into an impossible bidding war.\n\nThe industry already has supply and demand, now it needs technological sovereignty.",
+      },
+      {
+        type: "text",
+        title: "The solution",
+        body: "Create a designated marketplace that is easy the connection between buyers and sellers supported with AI without losing human contact and regaining full control of negotiation power.",
       },
       {
         type: "text",
         title: "The strategy",
-        body: "Black Diamond already had a name, a diamond mark, and years of equipment credibility. The marketplace had to inherit that trust and then earn a new one: this software is as serious as the iron.\n\nPositioning, in one line:\nHuman-first. AI-supported. Built for operators, not for platforms.\n\nThat line drove every decision:\nOrange is the only loud color — used for money, action, and verification. Everything else stays quiet so photos of equipment can carry the page.\nCopy talks like the yard: “iron,” “list, publish, connect,” “field-grade.” No SaaS fluff.\nAI writes listings and extracts specs. Humans still close the deal. Inquiry is email and phone, not a chatbot pretending to be a buyer.\nFree to start (3 listings). Paid plans exist to fund reach, verification, and trust — not to lock the gate.\n\nWhat this is not\nNot a consumer auction. Not a broker desk. Not a redesign of Craigslist. Direct contact between verified sellers and buyers.",
+        body: "Black Diamond already has a name, a diamond mark, and years of equipment credibility. To make a generational shift in the industry, we must design a product that falls in line with the new generations technology familiarity. This start with changing our brand positioning.\n\n“Machinery Deals Made Easy. Human-first. AI-supported.”",
       },
       {
         type: "text",
-        title: "Brand system",
-        body: "This is where the identity stops being a PDF and becomes code.\n\nLogo\nWordmark + diamond. Lives in the header at small size, watermarks listing photos where needed, and holds as a favicon. Never decoration. Always an identifier.\n\nColor\nink / near-black — type, logo, structure.\nsurface / off-white — page and cards.\nline / soft gray — borders, chips, filters, location pills.\naction / orange — the only accent: primary buttons, prices, “Most Popular,” step numbers.\nquiet / muted gray — meta text, categories, helper copy.\nRule: if it is not an action or a price, it is not orange.\n\nType\nHeavy grotesque headlines. Clean sans body. Hierarchy does the selling — title, price, location — so a listing card is readable on a phone in a truck.\n\nShape and space\nLarge radius cards. Generous padding. Pill chips for industry and location. The UI should feel like a well-built piece of equipment: tight tolerances, no extra chrome.\n\nVoice\nShort. Direct. Operator-grade.\n“The Trusted Marketplace For Heavy Equipment.”\n“List. Publish. Connect.”\n“Tell our AI what you have.”\n“Human-first, AI-supported — never the other way around.”\n\nDo\nLead with the equipment photo.\nPut price in orange.\nKeep verification visible (BD Verified, location, condition).\nUse industry categories operators already use.\n\nDon’t\nDecorate the UI with extra brand patterns that fight the photo.\nHide the price behind “Request a quote” unless the seller chose that.\nSound like a Silicon Valley marketplace.\nLet AI replace the phone call.",
+        title: "The brand system",
+        body: "Our UX and brand system was designed with our target user in mind. That is why we needed simple UI elements that are familiar on other platforms, making it easy for our target audience to navigate and use our platform.",
+      },
+      { type: "component", name: "bdm-nav" },
+      {
+        type: "text",
+        title: "Listing generation",
+        body: "AI is a tool, not the product.\nThe product is trust + speed. AI removes the blank listing form. Verification and direct contact do the rest.\n\nI implemented an easy-to-use listing generation process where the seller can write out what they're selling exactly as they would speak in person. Our AI system then writes the listing and extracts all the specs from the equipment that the user talked about. Users can then make changes, upload their photos, and publish their listing in less than 1 minute.",
       },
       {
         type: "image",
-        src: "/work/black-diamond-marketplace-02.png",
-        caption:
-          "Search — filters first, cards second. Listing cards put price in the brand orange and bury category in small caps so a buyer can scan a yard’s worth of iron in seconds.",
+        src: "/work/listing-generation.gif",
+        caption: "Listing generation",
+      },
+      {
+        type: "text",
+        title: "Verification grading",
+        body: "Once the user submits their listing, it goes into pending approval, where our backend verification AI agent grades the listing and auto-approves great listings or sends feedback on listings that need improvement or changes. This allows for the highest-quality content on our website inventory improving speed and trust.",
       },
       {
         type: "image",
-        src: "/work/black-diamond-marketplace-03.png",
-        caption:
-          "Listing detail — split layout: gallery left, decision panel right. Specs before the essay. Contact seller is the last beat, and it requires an account.",
-      },
-      {
-        type: "image",
-        src: "/work/black-diamond-marketplace-04.png",
-        caption:
-          "Pricing — four paid tiers plus Free. Orange only on the recommended path. Comparison is honest — gray X marks for what you do not get.",
+        src: "/work/agent-verification.png",
+        caption: "Verification grading",
       },
       {
         type: "text",
-        title: "Buyer flow",
-        body: "1. Land on homepage → search or “Browse Equipment”\n2. Filter by Industry / Category / Country / Sort\n3. Open a listing card (photo, category, title, price or “Contact for price,” location)\n4. Review specs, gallery, description\n5. Sign in or create an account\n6. Submit an inquiry → seller gets it directly (email / phone, human to human)\n\nWhy the account gate on inquiry: cuts anonymous noise and keeps the marketplace from turning into another open classifieds dump.",
+        title: "Inquiry verification",
+        body: "One of our biggest ambitions is to reduce spam and fraud probabilities when it comes to connecting buyers and sellers. I implemented a backend AI agent that verifies inquiry submissions and analyzes them for any potential fraud or scam keywords filtering out any possible phishing bots and delivering the best potential buyers to our users.",
       },
       {
-        type: "text",
-        title: "Seller flow",
-        body: "1. Create account — free, no card required\n2. Describe the equipment in plain language → AI builds an SEO listing (title, specs, description)\n3. Add up to 20 photos → review → publish. Live immediately\n4. Receive inquiries on the listing → respond, negotiate, close on their terms",
+        type: "component",
+        name: "bdm-inquiry-flow",
+        caption: "Inquiry verification",
       },
-      {
-        type: "text",
-        title: "Membership",
-        body: "Free — $0 — 3 listings — Get started\nStarter — $299/mo — 15 listings — BD Verified, AI listings, directory\nPro — $699/mo — 40 listings — Analytics + newsletter feature\nMax — $999/mo — Unlimited — Spotlight, blast, priority support\nEnterprise — Custom — Unlimited + seats — Multi-location, roles, billing\n\nAnnual billing: two months free. Payments via Stripe.",
-      },
-      {
-        type: "image",
-        src: "/work/black-diamond-marketplace-05.png",
-        caption:
-          "How it works — black hero for gravity, then a numbered seller path. AI is step 2, not the headline of the company.",
-      },
-      {
-        type: "text",
-        title: "Architecture",
-        body: "Client — Next.js App Router.\nPublic: home, search, listings/[slug], about, pricing, how-it-works, journal, sellers.\nDashboard: seller tools, listings CRUD, membership.\nAuth: login / signup.\n\nUnderneath: auth and sessions (accounts, roles, BD Verified); listings and media (specs, photos, search indexes); payments via Stripe (Free / Starter / Pro / Max / Enterprise).\n\nWhat the agentic layer actually does\nTurns a seller’s rough description into a structured listing.\nPulls manufacturer, model, hours, condition, and category when possible.\nWrites search-friendly copy in oilfield language.\nDoes not close the deal. That stays human.\n\nCore objects\nUser (guest → member → verified seller / org seat)\nListing (media, specs, price or RFQ, location, status)\nInquiry (buyer → seller, gated by auth)\nMembership (plan, listing cap, badges, placements)\nJournal article (content / SEO / trust)",
-      },
-      {
-        type: "text",
-        title: "Decisions",
-        body: "Photos own the UI.\nHeavy equipment is judged by the iron, not the chrome. The brand recedes so the asset can sell.\n\nPrice is a brand color.\nOrange is reserved for action and money. A recruiter can see that rule on every screen.\n\nAI is a tool, not the product.\nThe product is trust + speed. AI removes the blank listing form. Verification and direct contact do the rest.\n\nFree tier exists on purpose.\nThree listings with no card. The brand cannot preach “built for operators” and then meter the first step.\n\nTwo Black Diamond entries, one story.\nDrilling = the identity. Marketplace = the identity encoded as software. Same system, second chapter.",
-      },
-      {
-        type: "text",
-        title: "See it live",
-        body: "The marketplace is live and working.\n\nSearch listings, open a product page, walk the seller flow, and check the membership plans at blackdiamondmkt.com.\n\nThat’s the result. The brand system is in the product, the product is on the internet, and you can use it.",
-      },
+      { type: "text", title: "Architecture", body: "" },
+      { type: "component", name: "bdm-architecture" },
     ],
     published: true,
     created_at: now,

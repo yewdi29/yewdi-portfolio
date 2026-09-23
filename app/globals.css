@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --desk: #111111;
   --sheet: #f4f4f2;
@@ -63,6 +64,12 @@ a {
 @layer utilities {
   .tabular {
     font-variant-numeric: tabular-nums;
+  }
+
+  .text-dossier {
+    font-size: clamp(1.1rem, 1.95vw, 1.7rem);
+    line-height: 1.38;
+    letter-spacing: -0.018em;
   }
 }
 
@@ -252,3 +259,4 @@ html.is-project-open [data-project-tags] {
     transition: none;
   }
 }
+
