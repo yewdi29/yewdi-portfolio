@@ -226,8 +226,8 @@ function paintGlow(
   ctx.save();
   ctx.shadowBlur = 0;
   ctx.shadowColor = "transparent";
-  ctx.strokeStyle = `rgba(255, 107, 53, ${0.18 * opacity})`;
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = `rgba(255, 107, 53, ${0.14 * opacity})`;
+  ctx.lineWidth = 0.75;
   ctx.beginPath();
   path.forEach(([x, y], index) => {
     if (index === 0) ctx.moveTo(x + 10, y + 10);
@@ -246,10 +246,10 @@ function paintGlow(
     const falloff = (1 - Math.abs(offset) / half) ** 2.2;
     if (falloff < 0.01) continue;
     ctx.save();
-    ctx.shadowBlur = 12 * falloff;
-    ctx.shadowColor = `rgba(255, 120, 60, ${0.95 * falloff * opacity})`;
+    ctx.shadowBlur = 7 * falloff;
+    ctx.shadowColor = `rgba(255, 120, 60, ${0.7 * falloff * opacity})`;
     ctx.strokeStyle = `rgba(255, 150, 80, ${falloff * opacity})`;
-    ctx.lineWidth = 2.2;
+    ctx.lineWidth = 1.1;
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(x + 10, y + 10);
@@ -258,10 +258,10 @@ function paintGlow(
     ctx.restore();
     if (falloff > 0.7) {
       ctx.save();
-      ctx.shadowBlur = 6;
-      ctx.shadowColor = `rgba(255, 200, 150, ${falloff * opacity})`;
+      ctx.shadowBlur = 3;
+      ctx.shadowColor = `rgba(255, 200, 150, ${0.7 * falloff * opacity})`;
       ctx.strokeStyle = `rgba(255, 220, 180, ${falloff * opacity})`;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.6;
       ctx.lineCap = "round";
       ctx.beginPath();
       ctx.moveTo(x + 10, y + 10);
@@ -373,7 +373,7 @@ function BdmSearch() {
   return (
     <form
       ref={form}
-      className="relative w-full max-w-[360px]"
+      className="relative w-full max-w-[300px] md:max-w-[360px]"
       onSubmit={(event) => event.preventDefault()}
     >
       <div className="relative">
@@ -384,7 +384,7 @@ function BdmSearch() {
         />
         <label
           ref={pill}
-          className="flex w-full items-center overflow-hidden border-[1.5px] border-[#E8E9EA] focus-within:border-[#FF6B35]"
+          className="flex w-full items-center overflow-hidden border border-[#E8E9EA] focus-within:border-[#FF6B35]"
           style={pillStyle}
         >
           <span className="shrink-0 pl-3 text-[#9A9DA2]">
@@ -432,22 +432,15 @@ export default function BdmNav() {
 
   return (
     <div
-      className="w-full overflow-visible px-1 py-3"
+      className="w-full min-w-0 max-w-full overflow-hidden px-1 py-6 md:py-3"
       style={{ fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif" }}
     >
-      <div
-        className="grid items-center"
-        style={{
-          gridTemplateColumns: "auto minmax(0,1fr) auto",
-          gap: 16,
-          height: 52,
-        }}
-      >
+      <div className="flex flex-col items-center gap-5 md:grid md:h-[52px] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:gap-4">
         <BdmWordmark />
-        <div className="flex justify-center">
+        <div className="my-1 flex w-full min-w-0 justify-center md:my-0">
           <BdmSearch />
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-4 md:justify-end md:gap-3">
           <button
             type="button"
             onPointerDown={sell.pulse}

@@ -138,6 +138,16 @@ a {
   visibility: hidden;
 }
 
+@media (max-width: 1023px) {
+  .project-overlay.is-open.has-flight .project-header-title {
+    visibility: visible;
+  }
+
+  .project-flight-title.is-settled {
+    visibility: hidden;
+  }
+}
+
 [data-project-title].is-flying {
   visibility: hidden;
 }
@@ -197,11 +207,23 @@ html.is-project-open [data-project-tags] {
 
 .project-flight-title {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   letter-spacing: -0.02em;
   line-height: 1.375;
   color: var(--ink);
   white-space: nowrap;
+}
+
+@media (max-width: 1023px) {
+  .project-flight-title {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 640px) {
+  .project-flight-title {
+    font-size: 1.15rem;
+  }
 }
 
 .project-flight-line {
@@ -223,6 +245,7 @@ html.is-project-open [data-project-tags] {
 
 .project-overlay.is-scrollable {
   overflow: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
 }
 

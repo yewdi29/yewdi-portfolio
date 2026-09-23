@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { setExpandOrigin } from "@/lib/expand-origin";
 import { resolveMedia } from "@/lib/media";
 
-const MAX = 176;
+const MAX = 280;
 const GAP = 18;
 const CYCLE = 300;
 

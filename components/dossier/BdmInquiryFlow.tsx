@@ -98,7 +98,7 @@ function NodeCard({
         {node.title}
       </span>
       <span
-        className="mt-0.5 block whitespace-nowrap text-[9px] leading-tight"
+        className="mt-0.5 block text-[9px] leading-tight sm:whitespace-nowrap"
         style={{ color: mute ? "#9A9DA2" : "#FF6B35" }}
       >
         {node.subtitle}
@@ -161,18 +161,32 @@ export default function BdmInquiryFlow() {
 
   return (
     <div
-      className="w-full rounded-2xl border border-dashed border-[#E8E9EA] bg-[#FCFCFC] px-5 py-6 sm:px-8 sm:py-7"
+      className="w-full min-w-0 max-w-full overflow-hidden rounded-2xl border border-dashed border-[#E8E9EA] bg-[#FCFCFC] px-4 py-5 sm:px-8 sm:py-7"
       style={{ fontFamily: "var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif" }}
     >
       <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.08em] text-[#B0B3B7]">
         AI Verification Flow
       </p>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center md:hidden">
+        <NodeCard {...bind("unverified")} className="w-full max-w-[240px]" />
+        <VLine ok={false} active={!lit || lit.has("unverified")} />
+        <NodeCard {...bind("sellers")} className="w-full max-w-[240px]" />
+        <VLine ok active={isActive("sellers")} />
+        <NodeCard {...bind("ai")} className="w-full max-w-[240px]" />
+        <VLine ok active={isActive("buyers")} />
+        <NodeCard {...bind("buyers")} className="w-full max-w-[240px]" />
+        <VLine ok active={!lit || lit.has("contact")} />
+        <NodeCard {...bind("contact")} className="w-full max-w-[240px]" />
+        <VLine ok={false} active={!lit || lit.has("middlemen")} />
+        <NodeCard {...bind("middlemen")} className="w-full max-w-[240px]" />
+      </div>
+
+      <div className="hidden flex-col items-center md:flex">
         <NodeCard {...bind("unverified")} className="w-[148px]" />
         <VLine ok={false} active={!lit || lit.has("unverified")} />
 
-        <div className="flex w-full items-center gap-1.5">
+        <div className="flex w-full min-w-0 items-center gap-1.5">
           <NodeCard {...bind("sellers")} className="min-w-0 flex-1" />
           <Mark ok active={isActive("sellers")} />
           <NodeCard {...bind("ai")} className="min-w-0 flex-[1.15]" />

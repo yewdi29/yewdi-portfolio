@@ -38,6 +38,7 @@ export default function ProjectOverlay({
   const [titleDest, setTitleDest] = useState<{
     top: number;
     left: number;
+    width?: number;
   } | null>(null);
   const [canScroll, setCanScroll] = useState(false);
 
@@ -125,15 +126,24 @@ export default function ProjectOverlay({
       const node = overlayRef.current?.querySelector<HTMLElement>(
         ".project-header-title",
       );
-      const destTop = window.matchMedia("(min-width: 640px)").matches ? 32 : 24;
+      const desktop = window.matchMedia("(min-width: 1024px)").matches;
+      const padded = window.matchMedia("(min-width: 640px)").matches;
+      const pad = padded ? 32 : 24;
+      const stackedTitleTop = pad + 18 + 8;
+      const rect = node?.getBoundingClientRect();
       setTitleDest({
-        top: destTop,
-        left: node?.getBoundingClientRect().left ?? origin.lineLeft,
+        top: desktop ? pad : stackedTitleTop,
+        left: rect?.left ?? origin.lineLeft,
+        width: rect?.width,
       });
     };
 
     const frame = window.requestAnimationFrame(measure);
-    return () => window.cancelAnimationFrame(frame);
+    window.addEventListener("resize", measure);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", measure);
+    };
   }, [origin]);
 
   useEffect(() => {
@@ -210,7 +220,12 @@ export default function ProjectOverlay({
 
   const titleStyle: CSSProperties | undefined = flying
     ? expanded && titleDest
-      ? { top: titleDest.top, left: titleDest.left }
+      ? {
+          top: titleDest.top,
+          left: titleDest.left,
+          width: titleDest.width,
+          maxWidth: titleDest.width,
+        }
       : {
           top: origin?.titleTop,
           left: origin?.titleLeft,
@@ -261,7 +276,7 @@ export default function ProjectOverlay({
         </div>
       </div>
       {flying ? (
-        <p className={`project-flight-title${live ? " is-live" : ""}`} style={titleStyle}>
+        <p className={`project-flight-title${live ? " is-live" : ""}${expanded ? " is-settled" : ""}`} style={titleStyle}>
           {origin?.title ?? title}
         </p>
       ) : null}

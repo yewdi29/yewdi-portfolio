@@ -91,7 +91,7 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
             <figure
               key={`component-${index}`}
               id={`section-${index}`}
-              className={mediaClass}
+              className={`${mediaClass} min-w-0 max-w-full`}
             >
               {block.name === "bdm-logo" || block.name === "bdm-nav" ? (
                 <BdmNav />
@@ -111,15 +111,15 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
             id={`section-${index}`}
             className={mediaClass}
           >
-            <div className="relative w-full bg-rule/60">
+            <div className="relative w-full min-w-0 max-w-full overflow-hidden bg-rule/60">
               <Image
                 src={resolveMedia(block.src)}
                 alt={block.caption || ""}
                 width={1920}
                 height={1280}
                 unoptimized={isMotion}
-                className="h-auto w-full"
-                style={{ width: "100%", height: "auto" }}
+                className="block h-auto w-full max-w-full"
+                style={{ width: "100%", height: "auto", maxWidth: "100%" }}
                 sizes="(min-width: 1024px) 58vw, 100vw"
               />
             </div>
