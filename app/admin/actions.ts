@@ -66,7 +66,10 @@ function parseBlocks(raw: string): ProjectBlock[] {
     const value = JSON.parse(raw) as ProjectBlock[];
     return value.filter((block) => {
       if (block.type === "text") return Boolean(block.body?.trim());
-      return Boolean(block.src);
+      if (block.type === "image") return Boolean(block.src);
+      if (block.type === "placeholder") return Boolean(block.label);
+      if (block.type === "component") return Boolean(block.name);
+      return false;
     });
   } catch {
     return [];

@@ -18,10 +18,10 @@ function specsToRows(specs: Record<string, string>): SpecRow[] {
 
 function projectBlocks(blocks: ProjectBlock[]): FormBlock[] {
   if (!blocks.length) return [{ type: "text", body: "" }];
-  return blocks.flatMap((block) => {
-    if (block.type === "text") return [{ type: "text" as const, body: block.body }];
+  return blocks.flatMap((block): FormBlock[] => {
+    if (block.type === "text") return [{ type: "text", body: block.body }];
     if (block.type === "image") {
-      return [{ type: "image" as const, src: block.src, caption: block.caption ?? "" }];
+      return [{ type: "image", src: block.src, caption: block.caption ?? "" }];
     }
     return [];
   });

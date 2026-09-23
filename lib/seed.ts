@@ -293,7 +293,7 @@ export const seedProjects: Project[] = [
       Domain: "blackdiamondmkt.com",
       Stack: "Next.js · Auth · Supabase · Stripe · Anthropic API · Cursor",
     },
-    cover_path: "/work/home-startup-bdm.gif",
+    cover_path: "/work/home-startup-bdm.mp4",
     blocks: [
       {
         type: "text",

@@ -1,4 +1,5 @@
 import { formatMonth } from "@/lib/format";
+import { isVideoPath } from "@/lib/media";
 import type { NumberedProject } from "@/lib/types";
 import ProjectLink from "./ProjectLink";
 import Rise from "./Rise";
@@ -8,11 +9,14 @@ function previewImages(project: NumberedProject) {
   const images: string[] = [];
 
   const add = (src?: string) => {
-    if (!src || seen.has(src)) return;
+    if (!src || seen.has(src) || isVideoPath(src)) return;
     seen.add(src);
     images.push(src);
   };
 
+  if (isVideoPath(project.cover_path)) {
+    add(project.cover_path.replace(/\.(mp4|webm|mov)$/i, ".jpg"));
+  }
   add(project.cover_path);
   for (const block of project.blocks) {
     if (block.type === "image") add(block.src);
