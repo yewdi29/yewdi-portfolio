@@ -166,8 +166,7 @@ export const seedProjects: Project[] = [
         type: "text",
         body: "I designed a flexible labeling system that can easily be replicated onto any bottle of any size all while keeping the brand consistency in place. This new design cut down the design time by 70% and expanded the products from 4 to 13 in just 2 years. The company went from having a line up of inconsistent label designs, to a cohesive family of products that showed off the new face.",
       },
-      { type: "image", src: "/work/my-vida-origins-01.jpg", caption: "Label system" },
-      { type: "image", src: "/work/my-vida-origins-02.gif" },
+      { type: "image", src: "/work/my-vida-origins-02.gif", caption: "Label system" },
       { type: "image", src: "/work/my-vida-origins-03.jpg" },
       {
         type: "text",
@@ -256,13 +255,12 @@ export const seedProjects: Project[] = [
     },
     cover_path: "/work/titan-drilling-cover.jpg",
     blocks: [
+      { type: "image", src: "/work/titan-drilling-01.jpg", caption: "The Titan mark" },
+      { type: "image", src: "/work/titan-drilling-02.jpg" },
       {
         type: "text",
         body: "The logo design pays tribute to Titan’s engineering precision. Built using the Fibonacci sequence, the mark embodies both structure and strength — a visual reflection of the company’s bold impact. The design represents the downward motion of a drilling operation, formed by two geometric blocks in a “T” configuration. Crafted with perfect proportion through Fibonacci ratios, the result is a mark that feels balanced, intentional, and visually satisfying to the eye.",
       },
-      { type: "image", src: "/work/titan-drilling-cover.jpg", caption: "The Titan mark" },
-      { type: "image", src: "/work/titan-drilling-01.jpg" },
-      { type: "image", src: "/work/titan-drilling-02.jpg" },
       { type: "image", src: "/work/titan-drilling-03.gif" },
       {
         type: "text",
@@ -291,13 +289,9 @@ export const seedProjects: Project[] = [
     accent: "#F15A24",
     specs: {
       Role: "Solo — brand, UX, UI, product, and engineering",
-      Type: "Live marketplace web application",
-      Status: "Live at blackdiamondmkt.com",
-      Live: "blackdiamondmkt.com",
-      Stack:
-        "Next.js App Router · auth + seller dashboard · Stripe · AI listing generation · search + filters · media uploads",
-      Related:
-        "Black Diamond Drilling brand identity — this product is the brand applied to software",
+      Type: "Web application",
+      Domain: "blackdiamondmkt.com",
+      Stack: "Next.js · Auth · Supabase · Stripe · Anthropic API · Cursor",
     },
     cover_path: "/work/black-diamond-marketplace-01.png",
     blocks: [

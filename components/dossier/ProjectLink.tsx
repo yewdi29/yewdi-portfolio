@@ -6,14 +6,22 @@ import { createPortal } from "react-dom";
 import { setExpandOrigin } from "@/lib/expand-origin";
 import { resolveMedia } from "@/lib/media";
 
-const SIZE = 176;
+const MAX = 176;
 const GAP = 18;
 const CYCLE = 300;
 
-function placePreview(x: number, y: number) {
+function frameSize(width: number, height: number) {
+  if (!width || !height) return { width: MAX, height: MAX };
+  if (width >= height) {
+    return { width: MAX, height: Math.max(1, Math.round((MAX * height) / width)) };
+  }
+  return { width: Math.max(1, Math.round((MAX * width) / height)), height: MAX };
+}
+
+function placePreview(x: number, y: number, height: number) {
   return {
     left: x + GAP,
-    top: y - GAP - SIZE,
+    top: y - GAP - height,
   };
 }
 
@@ -32,9 +40,12 @@ export default function ProjectLink({
 }) {
   const [hover, setHover] = useState(false);
   const [frame, setFrame] = useState(0);
+  const [box, setBox] = useState({ width: MAX, height: MAX });
   const [pos, setPos] = useState({ left: 0, top: 0 });
   const [mounted, setMounted] = useState(false);
   const link = useRef<HTMLAnchorElement>(null);
+  const cursor = useRef({ x: 0, y: 0 });
+  const boxRef = useRef({ width: MAX, height: MAX });
   const imagesRef = useRef(images);
   imagesRef.current = images;
 
@@ -64,8 +75,10 @@ export default function ProjectLink({
     const onEnter = (event: PointerEvent) => {
       if (!canPreview()) return;
       const paths = imagesRef.current;
+      cursor.current = { x: event.clientX, y: event.clientY };
       setFrame(0);
-      setPos(placePreview(event.clientX, event.clientY));
+      setBox({ width: MAX, height: MAX });
+      setPos(placePreview(event.clientX, event.clientY, MAX));
       setHover(true);
       paths.forEach((path) => {
         const preload = new window.Image();
@@ -75,7 +88,8 @@ export default function ProjectLink({
 
     const onMove = (event: PointerEvent) => {
       if (!canPreview()) return;
-      setPos(placePreview(event.clientX, event.clientY));
+      cursor.current = { x: event.clientX, y: event.clientY };
+      setPos(placePreview(event.clientX, event.clientY, boxRef.current.height));
     };
 
     const onLeave = () => setHover(false);
@@ -146,11 +160,26 @@ export default function ProjectLink({
               style={{
                 left: pos.left,
                 top: pos.top,
-                width: SIZE,
-                height: SIZE,
+                width: box.width,
+                height: box.height,
               }}
             >
-              <img src={src} alt="" className="h-full w-full object-cover" />
+              <img
+                src={src}
+                alt=""
+                className="block h-full w-full object-contain"
+                onLoad={(event) => {
+                  const next = frameSize(
+                    event.currentTarget.naturalWidth,
+                    event.currentTarget.naturalHeight,
+                  );
+                  boxRef.current = next;
+                  setBox(next);
+                  setPos(
+                    placePreview(cursor.current.x, cursor.current.y, next.height),
+                  );
+                }}
+              />
             </div>,
             document.body,
           )

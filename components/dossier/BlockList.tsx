@@ -6,7 +6,7 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
   if (!blocks.length) return null;
 
   return (
-    <div className="mx-auto mt-20 max-w-3xl space-y-14 sm:mt-28 sm:space-y-16">
+    <div className="mt-20 space-y-14 sm:mt-28 sm:space-y-16">
       {blocks.map((block, index) => {
         if (block.type === "text") {
           const paragraphs = block.body.split(/\n\n+/).filter(Boolean);
@@ -40,7 +40,7 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
             id={`section-${index}`}
             className="scroll-mt-24"
           >
-            <div className="relative w-full overflow-hidden bg-rule/60">
+            <div className="relative w-full bg-rule/60">
               <Image
                 src={resolveMedia(block.src)}
                 alt={block.caption || ""}
@@ -48,7 +48,8 @@ export default function BlockList({ blocks }: { blocks: ProjectBlock[] }) {
                 height={1280}
                 unoptimized={isMotion}
                 className="h-auto w-full"
-                sizes="(min-width: 768px) 48rem, 100vw"
+                style={{ width: "100%", height: "auto" }}
+                sizes="(min-width: 1024px) 58vw, 100vw"
               />
             </div>
             {block.caption ? (
