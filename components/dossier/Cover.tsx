@@ -13,7 +13,7 @@ export default function Cover({ projects }: { projects: NumberedProject[] }) {
         <Rise delay={80} as="p" className="text-[18px] leading-7 text-ink">
           My name is Yewdiel Venzor, a Brand and Digital Product Designer
           based in Austin, Texas, with 8+ years building and evolving brands
-          across oil and gas, DTC, and cosmetics. My approach pairs
+          across a wide range of industries. My approach pairs
           foundational branding and user experience with hyperfast prototyping
           and AI-driven experimentation — turning strategic vision into real,
           testable products fast. I believe the strongest brands are built

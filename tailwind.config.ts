@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         desk: "#111111",
-        sheet: "#F4F4F2",
+        sheet: "#F8F8F8",
         ink: "#111111",
         mute: "#8A8A86",
         rule: "#E4E4E0",
