@@ -7,12 +7,16 @@ const grotesk = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
   display: "swap",
+  fallback: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  fallback: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -35,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${grotesk.variable} ${inter.variable} font-sans antialiased`}>{children}</body>
+    <html lang="en" className={`${grotesk.variable} ${inter.variable}`}>
+      <body className={`${grotesk.className} antialiased`}>{children}</body>
     </html>
   );
 }

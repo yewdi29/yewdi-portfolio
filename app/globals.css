@@ -23,7 +23,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--sheet);
-  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-grotesk, "Helvetica Neue", Helvetica, Arial, sans-serif);
   font-feature-settings: "tnum" 1, "kern" 1;
   -webkit-font-smoothing: antialiased;
 }

@@ -16,7 +16,7 @@ const config: Config = {
         rule: "#E4E4E0",
       },
       fontFamily: {
-        sans: ["var(--font-grotesk)", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        sans: ['var(--font-grotesk, "Helvetica Neue", Helvetica, Arial, sans-serif)'],
       },
       letterSpacing: {
         meta: "0.14em",
